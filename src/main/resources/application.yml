@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 4017
 
 ## DataSource Properties
 spring:
@@ -7,12 +7,12 @@ spring:
     mongodb:
       authentication-database: admin
       database: currentasdumdb
-      host: 157.245.219.63
-      ##host: 64.110.26.154
-      password: secret
-      ##password: 48QmU9CXJZChyHHSCwG8EuU6gr8yk755
-      username: devssd
-      ##username: admin
+      ##host: 157.245.219.63
+      host: 64.110.26.154
+      ##password: secret
+      password: 48QmU9CXJZChyHHSCwG8EuU6gr8yk755
+      ##username: devssd
+      username: admin
   datasource:
     username: postgres
     password: 5cutnWB55rx2NdBjTcWmckS7wbbjSQ6b

@@ -1,8 +1,10 @@
 package uz.ssd.locationsender.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -88,8 +90,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/token/refresh")
-                .permitAll()
                 .antMatchers("/api/auth/**")
                 .permitAll()
                 .anyRequest()
@@ -98,5 +98,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
+    }
+
+    @Bean
+    public FilterRegistrationBean<CounterFilter> counterFilter(){
+        FilterRegistrationBean<CounterFilter> registrationBean
+                = new FilterRegistrationBean<>();
+
+        registrationBean.setFilter(new CounterFilter());
+        registrationBean.addUrlPatterns("/api/loc");
+
+        return registrationBean;
     }
 }

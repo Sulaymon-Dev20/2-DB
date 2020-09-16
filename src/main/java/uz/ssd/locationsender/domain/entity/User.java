@@ -34,6 +34,9 @@ public class User  extends BaseEntity implements UserDetails {
     @Column(nullable = false)
     private String serviceName;
 
+    @Column
+    private Long reqCount;
+
     private boolean accountNonExpired = true;
     private boolean accountNonLocked = true;
     private boolean credentialsNonExpired = true;
