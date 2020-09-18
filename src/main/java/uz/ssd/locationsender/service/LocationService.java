@@ -34,7 +34,8 @@ public class LocationService {
 //        query.addCriteria(Criteria.where("isline").is(1));
 //        List<CurrentLocation> objects = mongoTemplate.find(query, CurrentLocation.class);
 //        Set<String> collectionNames = mongoTemplate.getCollectionNames();
-        return repository.findAllByIsline(1);
+//        return repository.findAllByIslineAndGpsstatus(1,"A");
+        return repository.findAllByGpsstatus("A");
     }
 
 

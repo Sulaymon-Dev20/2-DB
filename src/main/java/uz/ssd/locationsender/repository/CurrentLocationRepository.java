@@ -11,5 +11,5 @@ import java.util.List;
  * Time: 1:46 PM
  */
 public interface CurrentLocationRepository extends MongoRepository<CurrentLocation,String> {
-    List<CurrentLocation> findAllByIsline(Integer number);
+    List<CurrentLocation> findAllByGpsstatus(String gpsstatus);
 }
