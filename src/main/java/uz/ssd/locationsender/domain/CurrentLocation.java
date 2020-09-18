@@ -18,11 +18,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CurrentLocation {
+
     public String trackerid;
 
     public Integer speed;
 
     public Location loc;
+
+    public String gpsstatus;
 
     @JsonFormat(pattern="yyyy.MM.dd HH:mm:ss")
     public Date systemtime;
