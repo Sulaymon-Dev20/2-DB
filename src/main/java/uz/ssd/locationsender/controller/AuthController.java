@@ -24,6 +24,8 @@ import uz.ssd.locationsender.service.security.AuthService;
 import uz.ssd.locationsender.service.security.JwtTokenProvider;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Author: Khumoyun Khujamov
@@ -57,6 +59,8 @@ public class AuthController {
 
     @PostMapping("login")
     public HttpEntity<?> login(@Valid @RequestBody ReqSignIn reqSignIn){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String expireDateTime = LocalDateTime.now().plusDays(2).format(dateTimeFormatter);
         ObjectNode data = objectMapper.createObjectNode();
         Response response = new Response();
         Status status;
@@ -74,7 +78,7 @@ public class AuthController {
             data.put("accessToken", jwt);
             data.put("refreshToken", refreshToken);
             data.put("tokenType","Bearer ");
-            data.put("expiryDate",accessTokenDate);
+            data.put("expiryDate",expireDateTime);
         }else {
             status = new Status(1001, "username or password incorrect");
         }
