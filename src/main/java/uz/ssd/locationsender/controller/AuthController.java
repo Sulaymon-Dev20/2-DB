@@ -36,6 +36,9 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/api/auth")
 public class AuthController {
 
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final String expireDateTime = LocalDateTime.now().plusDays(2).format(dateTimeFormatter);
+
     private final ObjectMapper objectMapper;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
@@ -59,8 +62,7 @@ public class AuthController {
 
     @PostMapping("login")
     public HttpEntity<?> login(@Valid @RequestBody ReqSignIn reqSignIn){
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String expireDateTime = LocalDateTime.now().plusDays(2).format(dateTimeFormatter);
+
         ObjectNode data = objectMapper.createObjectNode();
         Response response = new Response();
         Status status;
@@ -103,7 +105,7 @@ public class AuthController {
             String refreshToken1 = jwtTokenProvider.generateRefreshToken(authentication);
             data.put("accessToken",accessToken);
             data.put("tokenType","Bearer ");
-            data.put("expiryDate",accessTokenDate);
+            data.put("expiryDate",expireDateTime);
             return ResponseEntity.status(HttpStatus.OK).body(data);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
