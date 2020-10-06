@@ -36,9 +36,6 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    private final String expireDateTime = LocalDateTime.now().plusDays(2).format(dateTimeFormatter);
-
     private final ObjectMapper objectMapper;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
@@ -62,7 +59,6 @@ public class AuthController {
 
     @PostMapping("login")
     public HttpEntity<?> login(@Valid @RequestBody ReqSignIn reqSignIn){
-
         ObjectNode data = objectMapper.createObjectNode();
         Response response = new Response();
         Status status;
@@ -80,7 +76,7 @@ public class AuthController {
             data.put("accessToken", jwt);
             data.put("refreshToken", refreshToken);
             data.put("tokenType","Bearer ");
-            data.put("expiryDate",expireDateTime);
+            data.put("expiryDate",getExpireDate());
         }else {
             status = new Status(1001, "username or password incorrect");
         }
@@ -92,6 +88,7 @@ public class AuthController {
 
     @PostMapping("token/refresh")
     public HttpEntity<?> getAccessToken( @RequestParam(name = "token") String refreshToken ){
+
         ObjectNode data = objectMapper.createObjectNode();
 
         if (StringUtils.hasText(refreshToken) ) {
@@ -105,9 +102,15 @@ public class AuthController {
             String refreshToken1 = jwtTokenProvider.generateRefreshToken(authentication);
             data.put("accessToken",accessToken);
             data.put("tokenType","Bearer ");
-            data.put("expiryDate",expireDateTime);
+            data.put("expiryDate",getExpireDate());
             return ResponseEntity.status(HttpStatus.OK).body(data);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    }
+
+    private String getExpireDate() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String expireDateTime = LocalDateTime.now().plusDays(2).format(dateTimeFormatter);
+        return expireDateTime;
     }
 }
