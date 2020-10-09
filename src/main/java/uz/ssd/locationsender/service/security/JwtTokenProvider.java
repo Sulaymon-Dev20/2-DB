@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import uz.ssd.locationsender.domain.entity.User;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Component
@@ -23,8 +25,7 @@ public class JwtTokenProvider {
 
     public String generateToken(Authentication authentication) {
         User userPrincipal = (User) authentication.getPrincipal();
-
-        Date expiryDate = new Date(new Date().getTime() + jwtExpirationInMs);
+        Date expiryDate = Date.from(LocalDateTime.now().plusDays(2).atZone(ZoneId.systemDefault()).toInstant());
 
         return Jwts.builder()
                 .setSubject(userPrincipal.getId().toString())

@@ -24,6 +24,8 @@ import uz.ssd.locationsender.service.security.AuthService;
 import uz.ssd.locationsender.service.security.JwtTokenProvider;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Author: Khumoyun Khujamov
@@ -74,7 +76,7 @@ public class AuthController {
             data.put("accessToken", jwt);
             data.put("refreshToken", refreshToken);
             data.put("tokenType","Bearer ");
-            data.put("expiryDate",accessTokenDate);
+            data.put("expiryDate",getExpireDate());
         }else {
             status = new Status(1001, "username or password incorrect");
         }
@@ -86,6 +88,7 @@ public class AuthController {
 
     @PostMapping("token/refresh")
     public HttpEntity<?> getAccessToken( @RequestParam(name = "token") String refreshToken ){
+
         ObjectNode data = objectMapper.createObjectNode();
 
         if (StringUtils.hasText(refreshToken) ) {
@@ -99,9 +102,15 @@ public class AuthController {
             String refreshToken1 = jwtTokenProvider.generateRefreshToken(authentication);
             data.put("accessToken",accessToken);
             data.put("tokenType","Bearer ");
-            data.put("expiryDate",accessTokenDate);
+            data.put("expiryDate",getExpireDate());
             return ResponseEntity.status(HttpStatus.OK).body(data);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    }
+
+    private String getExpireDate() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String expireDateTime = LocalDateTime.now().plusDays(2).format(dateTimeFormatter);
+        return expireDateTime;
     }
 }
