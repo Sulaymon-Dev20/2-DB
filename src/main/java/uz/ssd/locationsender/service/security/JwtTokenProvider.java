@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import uz.ssd.locationsender.domain.entity.User;
+import uz.ssd.locationsender.domain.entity.locsender.User;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

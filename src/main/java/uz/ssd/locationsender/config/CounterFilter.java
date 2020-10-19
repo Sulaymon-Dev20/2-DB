@@ -3,7 +3,7 @@ package uz.ssd.locationsender.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
-import uz.ssd.locationsender.domain.entity.User;
+import uz.ssd.locationsender.domain.entity.locsender.User;
 
 import javax.servlet.*;
 import java.io.IOException;

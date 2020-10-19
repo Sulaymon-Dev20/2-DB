@@ -1,4 +1,4 @@
-package uz.ssd.locationsender.domain.base;
+package uz.ssd.locationsender.domain.entity.locsender.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -21,10 +21,12 @@ public abstract class BaseEntity implements Serializable {
 
     @JsonFormat(pattern="dd.MM.yyyy HH:mm:ss")
     @CreatedDate
+    @Column(name = "created_date")
     private Date createdDate;
 
     @JsonFormat(pattern="dd.MM.yyyy HH:mm:ss")
     @LastModifiedDate
+    @Column(name = "updated_date")
     private Date updatedDate;
 
     private boolean active;

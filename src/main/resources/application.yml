@@ -13,12 +13,23 @@ spring:
       password: 48QmU9CXJZChyHHSCwG8EuU6gr8yk755
       ##username: devssd
       username: admin
-  datasource:
-    username: postgres
-    password: 5cutnWB55rx2NdBjTcWmckS7wbbjSQ6b
-    url: jdbc:postgresql://103.214.108.154:5432/locsender
-    initialization-mode: never
     driver-class-name: org.postgresql.Driver
 app:
    jwtSecret: CdSEN8y2mqjzLIEuArqVuiOKk5YtNaSc
    jwtExpirationInMs: 999999999
+   datasource:
+     asdum:
+      username: postgres
+      password: 5cutnWB55rx2NdBjTcWmckS7wbbjSQ6b
+      url: jdbc:postgresql://103.214.108.154:5432/asdum
+      driver-class-name: org.postgresql.Driver
+      configuration:
+       maximum-pool-size: 30
+     locsender:
+      username: postgres
+      password: 5cutnWB55rx2NdBjTcWmckS7wbbjSQ6b
+      url: jdbc:postgresql://103.214.108.154:5432/locsender
+      driver-class-name: org.postgresql.Driver
+      configuration:
+        maximum-pool-size: 30
+

@@ -15,11 +15,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import uz.ssd.locationsender.config.SecurityConfig;
-import uz.ssd.locationsender.domain.entity.User;
+import uz.ssd.locationsender.domain.entity.locsender.User;
 import uz.ssd.locationsender.dto.ReqSignIn;
 import uz.ssd.locationsender.dto.Response;
 import uz.ssd.locationsender.dto.Status;
-import uz.ssd.locationsender.repository.UserRepository;
+import uz.ssd.locationsender.repository.locsender.UserRepository;
 import uz.ssd.locationsender.service.security.AuthService;
 import uz.ssd.locationsender.service.security.JwtTokenProvider;
 

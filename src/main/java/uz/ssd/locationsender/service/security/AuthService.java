@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import uz.ssd.locationsender.domain.entity.User;
-import uz.ssd.locationsender.repository.UserRepository;
+import uz.ssd.locationsender.domain.entity.locsender.User;
+import uz.ssd.locationsender.repository.locsender.UserRepository;
 
 
 @Service

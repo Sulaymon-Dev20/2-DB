@@ -1,4 +1,4 @@
-package uz.ssd.locationsender.domain.entity;
+package uz.ssd.locationsender.domain.entity.locsender;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,10 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import uz.ssd.locationsender.domain.base.BaseEntity;
+import uz.ssd.locationsender.domain.entity.locsender.base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Collection;
 
 /**
@@ -18,7 +19,8 @@ import java.util.Collection;
  * Time: 1:02 PM
  */
 @EqualsAndHashCode(callSuper = true)
-@Entity(name = "via_users")
+@Entity
+@Table(name = "via_users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,14 +33,17 @@ public class User  extends BaseEntity implements UserDetails {
 
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "service_name")
     private String serviceName;
 
-    @Column
+    @Column(name = "req_count")
     private Long reqCount;
 
+    @Column(name = "account_non_expired")
     private boolean accountNonExpired = true;
+    @Column(name = "account_non_locked")
     private boolean accountNonLocked = true;
+    @Column(name = "credentials_non_expired")
     private boolean credentialsNonExpired = true;
     private boolean enabled = true;
 

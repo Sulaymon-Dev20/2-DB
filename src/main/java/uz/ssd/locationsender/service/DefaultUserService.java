@@ -3,12 +3,11 @@ package uz.ssd.locationsender.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.ssd.locationsender.config.CounterFilter;
-import uz.ssd.locationsender.domain.entity.User;
-import uz.ssd.locationsender.repository.UserRepository;
+import uz.ssd.locationsender.domain.entity.locsender.User;
+import uz.ssd.locationsender.repository.locsender.UserRepository;
 
 import java.util.Date;
 import java.util.Map;
