@@ -21,7 +21,7 @@ public class Bus {
     @Id
     private Integer id;
 
-    @Column(name = "gos_no")
+    @Column(name = "gos")
     private String gosNo;
 
     @OneToOne(fetch = FetchType.LAZY)

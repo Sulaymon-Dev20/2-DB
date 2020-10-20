@@ -20,6 +20,6 @@ public class BusService {
     }
 
     public Bus getBusByGosNo(String gosNo) {
-        return repository.findByGosNo(gosNo).orElseThrow(() -> new EntityNotFoundException("Could not find bus with gosNo" + gosNo));
+        return repository.findByGosNo(gosNo).orElseThrow(() -> new EntityNotFoundException("Could not find bus with gosNo " + gosNo));
     }
 }
