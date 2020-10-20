@@ -24,6 +24,9 @@ public class Bus {
     @Column(name = "gos")
     private String gosNo;
 
+    @Column(name = "deleted")
+    private Boolean deleted;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "marshrut_id")
     private Marshrut marshrut;
