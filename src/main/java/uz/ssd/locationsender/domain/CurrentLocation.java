@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
-import uz.ssd.locationsender.domain.entity.asdum.Bus;
 
 import java.util.Date;
 
