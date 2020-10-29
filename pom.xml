@@ -10,7 +10,7 @@
     </parent>
     <groupId>uz.ssd</groupId>
     <artifactId>location-sender</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.7</version>
     <name>location-sender</name>
     <description>Location Sender</description>
 

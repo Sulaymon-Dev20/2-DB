@@ -34,8 +34,8 @@ public class CheckController {
         Response response = new Response();
         Bus busByGosNo = busService.getBusByGosNo(gosNo);
         String name = busByGosNo.getMarshrut().getName();
-        response.setData("Bus is working");
-        response.setStatus(new Status(1, name));
+        response.setData(name);
+        response.setStatus(new Status(0, "Bus is found"));
         return ResponseEntity.ok(response);
     }
 

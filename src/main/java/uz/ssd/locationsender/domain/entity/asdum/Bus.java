@@ -17,7 +17,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bus {
-
     @Id
     private Integer id;
 
