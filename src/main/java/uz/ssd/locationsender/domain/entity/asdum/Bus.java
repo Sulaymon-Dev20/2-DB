@@ -22,7 +22,7 @@ public class Bus {
     private Integer id;
 
     @Column(name = "gos")
-    private String gosNo;
+    private String gos;
 
     @Column(name = "deleted")
     private Boolean deleted;
