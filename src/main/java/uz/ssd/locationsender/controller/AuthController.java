@@ -44,6 +44,7 @@ public class AuthController {
     private final AuthService authService;
     @Value("${app.jwtExpirationInMs}")
     private long accessTokenDate;
+
     @Autowired
     public AuthController(ObjectMapper objectMapper, AuthenticationManager authenticationManager,
                           JwtTokenProvider jwtTokenProvider, UserRepository userRepository,
@@ -58,13 +59,13 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public HttpEntity<?> login(@Valid @RequestBody ReqSignIn reqSignIn){
+    public HttpEntity<?> login(@Valid @RequestBody ReqSignIn reqSignIn) {
         ObjectNode data = objectMapper.createObjectNode();
         Response response = new Response();
         Status status;
 
         User byUsername = userRepository.findByUsername(reqSignIn.getUsername());
-        if (byUsername!=null && securityConfig.matchPassword(reqSignIn.getPassword(), byUsername.getPassword())) {
+        if (byUsername != null && securityConfig.matchPassword(reqSignIn.getPassword(), byUsername.getPassword())) {
 
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(reqSignIn.getUsername(), reqSignIn.getPassword())
@@ -75,9 +76,9 @@ public class AuthController {
             String refreshToken = jwtTokenProvider.generateRefreshToken(authentication);
             data.put("accessToken", jwt);
             data.put("refreshToken", refreshToken);
-            data.put("tokenType","Bearer ");
-            data.put("expiryDate",getExpireDate());
-        }else {
+            data.put("tokenType", "Bearer ");
+            data.put("expiryDate", getExpireDate());
+        } else {
             status = new Status(1001, "username or password incorrect");
         }
 
@@ -87,11 +88,11 @@ public class AuthController {
     }
 
     @PostMapping("token/refresh")
-    public HttpEntity<?> getAccessToken( @RequestParam(name = "token") String refreshToken ){
+    public HttpEntity<?> getAccessToken(@RequestParam(name = "token") String refreshToken) {
 
         ObjectNode data = objectMapper.createObjectNode();
 
-        if (StringUtils.hasText(refreshToken) ) {
+        if (StringUtils.hasText(refreshToken)) {
             String userId = jwtTokenProvider.getUserIdFromJWT(refreshToken);
 
             UserDetails userDetails = authService.loadUserById(Long.parseLong(userId));
@@ -100,9 +101,9 @@ public class AuthController {
 
             String accessToken = jwtTokenProvider.generateToken(authentication);
             String refreshToken1 = jwtTokenProvider.generateRefreshToken(authentication);
-            data.put("accessToken",accessToken);
-            data.put("tokenType","Bearer ");
-            data.put("expiryDate",getExpireDate());
+            data.put("accessToken", accessToken);
+            data.put("tokenType", "Bearer ");
+            data.put("expiryDate", getExpireDate());
             return ResponseEntity.status(HttpStatus.OK).body(data);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
