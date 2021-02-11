@@ -57,7 +57,7 @@ public class AuthController {
     }
 
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public HttpEntity<?> login(@Valid @RequestBody ReqSignIn reqSignIn){
         ObjectNode data = objectMapper.createObjectNode();
         Response response = new Response();

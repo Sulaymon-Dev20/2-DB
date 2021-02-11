@@ -20,32 +20,19 @@ import java.util.Collection;
  */
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "via_users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User  extends BaseEntity implements UserDetails {
     @Column(unique = true, nullable = false)
-    private String username;
+    private String phoneNumber;
 
     @Column(nullable = false)
     private String password;
 
     private String email;
 
-    @Column(nullable = false, name = "service_name")
-    private String serviceName;
-
-    @Column(name = "req_count")
-    private Long reqCount;
-
-    @Column(name = "account_non_expired")
-    private boolean accountNonExpired = true;
-    @Column(name = "account_non_locked")
-    private boolean accountNonLocked = true;
-    @Column(name = "credentials_non_expired")
-    private boolean credentialsNonExpired = true;
-    private boolean enabled = true;
+    private Boolean deleted;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -53,22 +40,27 @@ public class User  extends BaseEntity implements UserDetails {
     }
 
     @Override
+    public String getUsername() {
+        return this.phoneNumber;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
-        return this.accountNonExpired;
+        return this.deleted;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountNonLocked;
+        return this.deleted;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsNonExpired;
+        return this.deleted;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.enabled;
+        return !this.deleted;
     }
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * Author: Khumoyun Khujamov
  * Date: 10/26/20
@@ -12,6 +14,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bus {
+public class Bus implements Serializable {
     public String gosno;
 }

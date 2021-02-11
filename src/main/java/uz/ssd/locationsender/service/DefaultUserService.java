@@ -29,12 +29,9 @@ public class DefaultUserService {
     // This method executes in every 5 minutes
     @Scheduled(fixedRate = 300000)
     public void saveRequestCount() {
-
         for (Map.Entry<Long, Long> entry : CounterFilter.counter.entrySet()) {
             Long userId = entry.getKey();
             User user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User with id " + userId + "not found"));
-            Long updatedReqCount = user.getReqCount() + entry.getValue();
-            user.setReqCount(updatedReqCount);
             user.setUpdatedDate(new Date());
             userRepository.save(user);
         }

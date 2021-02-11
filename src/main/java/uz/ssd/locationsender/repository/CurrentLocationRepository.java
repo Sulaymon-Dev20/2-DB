@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface CurrentLocationRepository extends MongoRepository<CurrentLocation,String> {
     List<CurrentLocation> findAllByGpsstatus(String gpsstatus);
+
+    List<CurrentLocation> findAllByIslineAndGpsstatus(int i, String a);
 }

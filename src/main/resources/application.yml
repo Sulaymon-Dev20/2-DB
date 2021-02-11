@@ -1,12 +1,14 @@
 server:
   port: 4017
-
-## DataSource Properties
 spring:
+  jpa:
+    show-sql: true
+  ## DataSource Properties
+
   data:
     mongodb:
       authentication-database: admin
-      database: currentasdumdb
+      database: myschool
       ##host: 157.245.219.63
       host: 64.110.26.154
       ##password: secret
@@ -14,22 +16,24 @@ spring:
       ##username: devssd
       username: admin
     driver-class-name: org.postgresql.Driver
+
+#  hazelcast:
+#    getOutboundPorts:7001
 app:
-   jwtSecret: CdSEN8y2mqjzLIEuArqVuiOKk5YtNaSc
-   jwtExpirationInMs: 999999999
-   datasource:
-     asdum:
+  jwtSecret: CdSEN8y2mqjzLIEuArqVuiOKk5YtNaSc
+  jwtExpirationInMs: 999999999
+  datasource:
+    asdum:
       username: postgres
-      password: 5cutnWB55rx2NdBjTcWmckS7wbbjSQ6b
-      url: jdbc:postgresql://103.214.108.154:5432/asdum
-      driver-class-name: org.postgresql.Driver
-      configuration:
-       maximum-pool-size: 30
-     locsender:
-      username: postgres
-      password: 5cutnWB55rx2NdBjTcWmckS7wbbjSQ6b
-      url: jdbc:postgresql://103.214.108.154:5432/locsender
+      password: 1234
+      url: jdbc:postgresql://localhost:5432/myBus
       driver-class-name: org.postgresql.Driver
       configuration:
         maximum-pool-size: 30
-
+    locsender:
+      username: postgres
+      password: 1234
+      url: jdbc:postgresql://localhost:5432/myschool
+      driver-class-name: org.postgresql.Driver
+      configuration:
+        maximum-pool-size: 30
