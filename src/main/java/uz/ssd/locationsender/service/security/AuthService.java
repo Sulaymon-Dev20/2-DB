@@ -1,3 +1,4 @@
+/*
 package uz.ssd.locationsender.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,3 +31,4 @@ public class AuthService implements UserDetailsService {
         return userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User id not found: " +userId));
     }
 }
+*/

@@ -34,7 +34,7 @@ public class LocationController {
     public HttpEntity<?> getLocation() {
         Response response = new Response();
         response.setStatus(new Status(0, "success"));
-        response.setData(service.getCurLoc());
+        response.setData(null);
         return ResponseEntity.ok(response);
     }
 
@@ -42,7 +42,7 @@ public class LocationController {
     public HttpEntity<?> getLocationOld() {
         Response response = new Response();
         response.setStatus(new Status(0, "success"));
-        response.setData(service.getCurLoc());
+        response.setData(null);
         return ResponseEntity.ok(response);
     }
 }

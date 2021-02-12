@@ -18,12 +18,13 @@ public class UserController {
     @Autowired
     CronConfig cronConfig;
 
-    @Scheduled(cron = "0/20 * * * * *")
+//    @Scheduled(cron = "0/20 * * * * *")
     @GetMapping
     public HttpEntity<?> getAllUsers(){
         Response response = new Response();
         response.setStatus(new Status(0, "success"));
-        response.setData(cronConfig.getAll());
+//        response.setData(cronConfig.getAll());
+        response.setData("sasdf");
         return ResponseEntity.ok(response);
     }
 }

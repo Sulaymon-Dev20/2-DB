@@ -17,21 +17,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import uz.ssd.locationsender.domain.entity.locsender.User;
-import uz.ssd.locationsender.service.security.AuthService;
 import uz.ssd.locationsender.service.security.JwtAuthenticationEntryPoint;
 import uz.ssd.locationsender.service.security.JwtAuthenticationFilter;
 
-/**
- * Author: Khumoyun Khujamov
- * Date: 9/9/20
- * Time: 11:53 AM
- */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    AuthService authService;
+//    @Autowired
+//    AuthService authService;
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -61,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
+//        auth.userDetailsService(authService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -89,7 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**","/api/user")
+                .antMatchers("/api/auth/**", "/bosh/**", "bosh")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

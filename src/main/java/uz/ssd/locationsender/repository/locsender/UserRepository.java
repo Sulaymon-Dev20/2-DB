@@ -9,8 +9,8 @@ import uz.ssd.locationsender.domain.entity.locsender.User;
  * Date: 9/9/20
  * Time: 1:23 PM
  */
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+//@Repository
+//public interface UserRepository extends JpaRepository<User, Long> {
+//    User findByUsername(String username);
 
-}
+//}
